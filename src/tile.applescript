@@ -22,7 +22,7 @@ on run argv
 	end try
 
 	using terms from application "Terminal"
-		tell application _terminalAppa
+		tell application _terminalApp
 			-- Terminal is kind of wierd
 			if _terminalApp = "Terminal" then
 				set originY of _screen to 23
