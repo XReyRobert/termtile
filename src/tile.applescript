@@ -22,7 +22,7 @@ on run argv
 	end try
 
 	using terms from application "Terminal"
-		tell application _terminalApp
+		tell application _terminalAppa
 			-- Terminal is kind of wierd
 			if _terminalApp = "Terminal" then
 				set originY of _screen to 23
@@ -31,25 +31,25 @@ on run argv
 			if (count of _directions) = 1 then
 				set _direction to item 1 of _directions
 				if _direction = up then
-					set bounds of window 0 to {originX of _screen, originY of _screen, (originX of _screen) + (width of _screen), (originY of _screen) + (height of _screen) / 2 - _marginV}
+					set bounds of window 0 to {originX of _screen + _marginH, originY of _screen + _marginV, (originX of _screen) + (width of _screen - _marginH/2), (originY of _screen) + (height of _screen) / 2 - _marginV}
 				else if _direction = down then
-					set bounds of window 0 to {originX of _screen, (originY of _screen) + (height of _screen) / 2 + _marginV, (originX of _screen) + (width of _screen), (originY of _screen) + (height of _screen)}
+					set bounds of window 0 to {originX of _screen + _marginH, (originY of _screen + _marginV ) + (height of _screen) / 2 + _marginV, (originX of _screen) + (width of _screen)-_MarginH, (originY of _screen) + (height of _screen - _marginV)}
 				else if _direction = left then
-					set bounds of window 0 to {originX of _screen, originY of _screen, (originX of _screen) + (width of _screen) / 2 - _marginH, (originY of _screen) + (height of _screen)}
+					set bounds of window 0 to {originX of _screen + _marginH, originY of _screen + _marginV , (originX of _screen) + (width of _screen) / 2 - _marginH/2, (originY of _screen) + (height of _screen - _marginV)}
 				else (* _direction = right *)
-					set bounds of window 0 to {(originX of _screen) + (width of _screen) / 2 + _marginH, originY of _screen, (originX of _screen) + (width of _screen), (originY of _screen) + (height of _screen)}
+					set bounds of window 0 to {(originX of _screen) + (width of _screen) / 2 + _marginH/2, originY of _screen + _marginV , (originX of _screen) + (width of _screen) - _marginH, (originY of _screen) + (height of _screen - _marginV)}
 				end if
 			else
 				set _horizontal to horizontal of _directions
 				set _vertical to vertical of _directions
 				if _vertical = up and _horizontal = left then
-					set bounds of window 0 to {originX of _screen, originY of _screen, (originX of _screen) + (width of _screen) / 2 - _marginH, (originY of _screen) + (height of _screen) / 2 - _marginV}
+					set bounds of window 0 to {originX of _screen + _marginH, originY of _screen + _marginV , (originX of _screen) + (width of _screen) / 2 - _marginH / 2, (originY of _screen) + (height of _screen) / 2 -  _marginV/2}
 				else if _vertical = up and _horizontal = right then
-					set bounds of window 0 to {(originX of _screen) + (width of _screen) / 2 + _marginH, originY of _screen, (originX of _screen) + (width of _screen), (originY of _screen) + (height of _screen) / 2 - _marginV}
+					set bounds of window 0 to {(originX of _screen) + (width of _screen) / 2 + _marginH/2, originY of _screen + _marginV , (originX of _screen) + (width of _screen - _marginH), (originY of _screen) + (height of _screen) / 2 - _marginV/2}
 				else if _vertical = down and _horizontal = left then
-					set bounds of window 0 to {originX of _screen, (originY of _screen) + (height of _screen) / 2 + _marginV, (originX of _screen) + (width of _screen) / 2 - _marginH, (originY of _screen) + height of _screen}
+					set bounds of window 0 to {originX of _screen + _marginH, (originY of _screen + _marginV/2 ) + (height of _screen) / 2, (originX of _screen) + (width of _screen) / 2 - _marginH/2, (originY of _screen) + height of _screen - _marginV}
 				else if _vertical = down and _horizontal = right then
-					set bounds of window 0 to {(originX of _screen) + (width of _screen) / 2 + _marginH, (originY of _screen) + (height of _screen) / 2 + _marginV, (originX of _screen) + (width of _screen), (originY of _screen) + (height of _screen)}
+					set bounds of window 0 to {(originX of _screen) + (width of _screen) / 2 + _marginH/2, (originY of _screen + _marginV/2 ) + (height of _screen) / 2, (originX of _screen) + (width of _screen - _marginH), (originY of _screen) + (height of _screen - _marginV)}
 				end if
 			end if
 		end tell
